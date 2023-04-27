@@ -21,6 +21,12 @@
     <ClInclude Include="CATMathPoint.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="HowTo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HowToUnique3DPoint.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyService.cpp">
@@ -30,6 +36,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CATMathPoint.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="HowTo.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="HowToUnique3DPoint.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+
 class CATMathPoint {
 public:
   CATMathPoint();
@@ -23,3 +25,8 @@ public:
   int m_Y;
   int m_Z;
 };
+
+std::ostream &operator<<(std::ostream &out, CATMathPoint &A) {
+  out << "(" << A.GetX() << "," << A.GetY() << "," << A.GetZ() << ")";
+  return out;
+}

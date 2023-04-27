@@ -148,10 +148,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CATMathPoint.h" />
+    <ClInclude Include="HowTo.h" />
+    <ClInclude Include="HowToUnique3DPoint.h" />
     <ClInclude Include="MyService.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CATMathPoint.cpp" />
+    <ClCompile Include="HowTo.cpp" />
+    <ClCompile Include="HowToUnique3DPoint.cpp" />
     <ClCompile Include="MyService.cpp" />
     <ClCompile Include="testing.cpp" />
   </ItemGroup>
