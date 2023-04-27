@@ -1,4 +1,4 @@
-#include "HowToUnique3DPoint.h"
+ï»¿#include "HowToUnique3DPoint.h"
 #include "CATMathPoint.h"
 #include <iostream>
 #include <algorithm>
@@ -8,11 +8,11 @@ using std::endl;
 
 
 /**************************************************
-* @ brief:     ÅĞ¶Ï CATMathPoint ´óĞ¡
-*              ×¢£º²»¿ÉÒÔÖ±½ÓÓÃĞ¡ÓÚºÅ¶Ô±ÈÁ½¸öÖµµÄ´óĞ¡×÷Îª·µ»ØÒÀ¾İ£¬ÕâÑù»á²úÉúÆçÒå£¬µ¼ÖÂsort±ÀÀ£
-*              1.¶ÔÓÚÈÎÒâÔªËØa£¬ĞèÂú×ã comp(a, a) == false
-*              2.¶ÔÓÚÈÎÒâÁ½¸öÔªËØaºÍb£¬Èô comp(a, b)==true ÔòÒªÂú×ã comp(b, a)==false
-*              3.¶ÔÓÚÈÎÒâÈı¸öÔªËØa¡¢bºÍc£¬Èô comp(a, b)==true ÇÒ comp(b, c)==true ÔòĞèÒªÂú×ã comp(a, c)==true
+* @ brief:     åˆ¤æ–­ CATMathPoint å¤§å°
+*              æ³¨ï¼šä¸å¯ä»¥ç›´æ¥ç”¨å°äºå·å¯¹æ¯”ä¸¤ä¸ªå€¼çš„å¤§å°ä½œä¸ºè¿”å›ä¾æ®ï¼Œè¿™æ ·ä¼šäº§ç”Ÿæ­§ä¹‰ï¼Œå¯¼è‡´sortå´©æºƒ
+*              1.å¯¹äºä»»æ„å…ƒç´ aï¼Œéœ€æ»¡è¶³ comp(a, a) == false
+*              2.å¯¹äºä»»æ„ä¸¤ä¸ªå…ƒç´ aå’Œbï¼Œè‹¥ comp(a, b)==true åˆ™è¦æ»¡è¶³ comp(b, a)==false
+*              3.å¯¹äºä»»æ„ä¸‰ä¸ªå…ƒç´ aã€bå’Œcï¼Œè‹¥ comp(a, b)==true ä¸” comp(b, c)==true åˆ™éœ€è¦æ»¡è¶³ comp(a, c)==true
 * @ returns:   bool
 * @ parameter: const CATMathPoint & lhs
 * @ parameter: const CATMathPoint & rhs
@@ -68,14 +68,14 @@ HowToUnique3DPoint::~HowToUnique3DPoint() {
 }
 
 void HowToUnique3DPoint::Run() {
-	// ³õÊ¼»¯Êı¾İÁ¿
-	if (!m_Points.size()){ // ²»¹ÜÊÇ·ñÒªËæ»úÉú³É£¬Ö»Òª m_Points Ã»ÓĞÊı¾İ¾Í³¢ÊÔ push_back
+	// åˆå§‹åŒ–æ•°æ®é‡
+	if (!m_Points.size()){ // ä¸ç®¡æ˜¯å¦è¦éšæœºç”Ÿæˆï¼Œåªè¦ m_Points æ²¡æœ‰æ•°æ®å°±å°è¯• push_back
 		for (int i = 0; i < m_iCountofPoint; i++) {
 			m_Points.push_back(new CATMathPoint());
 		}
 	}
 
-	// ÓĞ¿ÉÄÜm_Points Ã»ÓĞÊı¾İ
+	// æœ‰å¯èƒ½m_Points æ²¡æœ‰æ•°æ®
 	if (m_Points.size()) {
 		Run();
 	}
@@ -88,7 +88,7 @@ void HowToUnique3DPoint::Run() {
 
 bool HowToUnique3DPoint::Calculate()
 {
-	// ¶ÔÊı¾İ½øĞĞÅÅĞò
+	// å¯¹æ•°æ®è¿›è¡Œæ’åº
 	cout << "#after sort:***********************************************************" << endl;
 	int i = 1;
 	sort(m_Points.begin(), m_Points.end(), Point3dCompare());
@@ -98,7 +98,7 @@ bool HowToUnique3DPoint::Calculate()
 		i++;
 	}
 
-	// ¶ÔÊı¾İÈ¥ÖØ´¦Àí
+	// å¯¹æ•°æ®å»é‡å¤„ç†
 	cout << "#after unique:***********************************************************" << endl;
 	i = 1;
 	m_Points.erase(unique(m_Points.begin(), m_Points.end(), uniquePoint3d()), m_Points.end());

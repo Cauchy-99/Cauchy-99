@@ -26,7 +26,7 @@ public:
 	}
 
 private:
-  int  m_iCountofPoint;    // ĞèÒª²âÊÔ¶àÉÙ¸öµã£¬Ä¬ÈÏÖµÎª10000
-  bool m_bRandomPoint;    // ÊÇ·ñËæ»úÉú³Éµã£¬Ä¬ÈÏËæ»úÉú³É
+  int  m_iCountofPoint;    // éœ€è¦æµ‹è¯•å¤šå°‘ä¸ªç‚¹ï¼Œé»˜è®¤å€¼ä¸º10000
+  bool m_bRandomPoint;    // æ˜¯å¦éšæœºç”Ÿæˆç‚¹ï¼Œé»˜è®¤éšæœºç”Ÿæˆã€‚
   vector<CATMathPoint*> m_Points;
 };
