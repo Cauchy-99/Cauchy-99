@@ -1,10 +1,16 @@
-﻿#include "HowToUnique3DPoint.h"
+#include "HowToUnique3DPoint.h"
 #include "CATMathPoint.h"
 #include <iostream>
 #include <algorithm>
 
 using std::cout;
 using std::endl;
+
+// TODO:在头文件中重载之后，编译会报错
+std::ostream& operator<<(std::ostream& out, CATMathPoint& A) {
+	out << "(" << A.GetX() << "," << A.GetY() << "," << A.GetZ() << ")";
+	return out;
+}
 
 
 /**************************************************
@@ -17,14 +23,14 @@ using std::endl;
 * @ parameter: const CATMathPoint & lhs
 * @ parameter: const CATMathPoint & rhs
 ***************************************************/
-bool ComparePoint(const CATMathPoint &lhs, const CATMathPoint &rhs) {
-  if (lhs.GetX() + 0.001 < rhs.GetX())
+bool ComparePoint(CATMathPoint* lhs, CATMathPoint* rhs) {
+  if (lhs->GetX() + 0.001 < rhs->GetX())
     return true;
-  else if (abs(lhs.GetX() - rhs.GetX()) < 0.001) {
-    if (lhs.GetY() + 0.001 < rhs.GetY())
+  else if (abs(lhs->GetX() - rhs->GetX()) < 0.001) {
+    if (lhs->GetY() + 0.001 < rhs->GetY())
       return true;
-    else if (abs(lhs.GetY() - rhs.GetY()) < 0.001) {
-      if (lhs.GetZ() + 0.001 < rhs.GetZ())
+    else if (abs(lhs->GetY() - rhs->GetY()) < 0.001) {
+      if (lhs->GetZ() + 0.001 < rhs->GetZ())
         return true;
     }
   }
@@ -33,16 +39,16 @@ bool ComparePoint(const CATMathPoint &lhs, const CATMathPoint &rhs) {
 
 class Point3dCompare {
 public:
-  bool operator()(const CATMathPoint &lhs, const CATMathPoint &rhs) const {
+  bool operator()(CATMathPoint* lhs, CATMathPoint* rhs) const {
     return ComparePoint(lhs, rhs);
   }
 };
 
 class uniquePoint3d {
 public:
-  bool operator()(const CATMathPoint &lhs, const CATMathPoint &rhs) const {
-    return (lhs.GetX() == rhs.GetX() && lhs.GetY() == rhs.GetY() &&
-            lhs.GetZ() == rhs.GetZ());
+  bool operator()( CATMathPoint* lhs, CATMathPoint* rhs) const {
+    return (lhs->GetX() == rhs->GetX() && lhs->GetY() == rhs->GetY() &&
+            lhs->GetZ() == rhs->GetZ());
   }
 };
 
@@ -93,7 +99,7 @@ bool HowToUnique3DPoint::Calculate()
 	int i = 1;
 	sort(m_Points.begin(), m_Points.end(), Point3dCompare());
 	for (auto it = m_Points.begin(); it != m_Points.end(); it++) {
-		cout << *it << "\t";
+		cout << (**it) << "\t";
 		if (i % 5 == 0) cout << endl;
 		i++;
 	}
@@ -103,7 +109,7 @@ bool HowToUnique3DPoint::Calculate()
 	i = 1;
 	m_Points.erase(unique(m_Points.begin(), m_Points.end(), uniquePoint3d()), m_Points.end());
 	for (auto it = m_Points.begin(); it != m_Points.end(); it++) {
-		cout << *it << "\t";
+		cout << (**it) << "\t";
 		if (i % 5 == 0) cout << endl;
 		i++;
 	}

@@ -9,5 +9,3 @@ CATMathPoint::CATMathPoint()
 CATMathPoint::CATMathPoint(int iX, int iY, int iZ)
     : m_X(iX), m_Y(iY), m_Z(iZ){
 }
-
-//生命
