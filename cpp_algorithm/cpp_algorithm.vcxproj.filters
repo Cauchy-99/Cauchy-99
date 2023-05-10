@@ -27,6 +27,12 @@
     <ClInclude Include="HowToUnique3DPoint.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="HowToReadText.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ZWReadTreeDataCls.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyService.cpp">
@@ -42,6 +48,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="HowToUnique3DPoint.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="HowToReadText.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ZWReadTreeDataCls.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

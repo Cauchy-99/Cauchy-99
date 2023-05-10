@@ -1,10 +1,20 @@
-﻿#include "HowToUnique3DPoint.h"
-#include "CATMathPoint.h"
+#include "HowToUnique3DPoint.h"
 #include <iostream>
 #include <algorithm>
 
 using std::cout;
 using std::endl;
+
+// TODO:在头文件中重载之后，编译会报错
+std::ostream& operator<<(std::ostream& out, CATMathPoint& A) {
+	out << "(" << A.GetX() << "," << A.GetY() << "," << A.GetZ() << ")";
+	return out;
+}
+
+std::ostream& operator<<(std::ostream& out, CATMathPoint_var A) {
+	out << "(" << A->GetX() << "," << A->GetY() << "," << A->GetZ() << ")";
+	return out;
+}
 
 
 /**************************************************
@@ -17,32 +27,45 @@ using std::endl;
 * @ parameter: const CATMathPoint & lhs
 * @ parameter: const CATMathPoint & rhs
 ***************************************************/
-bool ComparePoint(const CATMathPoint &lhs, const CATMathPoint &rhs) {
-  if (lhs.GetX() + 0.001 < rhs.GetX())
+bool ComparePoint(CATMathPoint_var lhs, CATMathPoint_var rhs) {
+  if (lhs->GetX() + 0.001 < rhs->GetX())
     return true;
-  else if (abs(lhs.GetX() - rhs.GetX()) < 0.001) {
-    if (lhs.GetY() + 0.001 < rhs.GetY())
+  else if (abs(lhs->GetX() - rhs->GetX()) < 0.001) {
+    if (lhs->GetY() + 0.001 < rhs->GetY())
       return true;
-    else if (abs(lhs.GetY() - rhs.GetY()) < 0.001) {
-      if (lhs.GetZ() + 0.001 < rhs.GetZ())
+    else if (abs(lhs->GetY() - rhs->GetY()) < 0.001) {
+      if (lhs->GetZ() + 0.001 < rhs->GetZ())
         return true;
     }
   }
   return false;
 }
 
+bool ComparePoint2(CATMathPoint_var lhs, CATMathPoint_var rhs) {
+	if (lhs->GetX() < rhs->GetX()) {
+		return true;
+	}
+	else if (lhs->GetX() == rhs->GetX() && lhs->GetY() < rhs->GetY()) {
+		return true;
+	}
+	else if (lhs->GetX() == rhs->GetX() && lhs->GetY() == rhs->GetY() && lhs->GetZ() < rhs->GetZ()) {
+		return true;
+	}
+	return false;
+}
+
 class Point3dCompare {
 public:
-  bool operator()(const CATMathPoint &lhs, const CATMathPoint &rhs) const {
+  bool operator()(CATMathPoint_var lhs, CATMathPoint_var rhs) const {
     return ComparePoint(lhs, rhs);
   }
 };
 
 class uniquePoint3d {
 public:
-  bool operator()(const CATMathPoint &lhs, const CATMathPoint &rhs) const {
-    return (lhs.GetX() == rhs.GetX() && lhs.GetY() == rhs.GetY() &&
-            lhs.GetZ() == rhs.GetZ());
+  bool operator()( CATMathPoint_var lhs, CATMathPoint_var rhs) const {
+    return (lhs->GetX() == rhs->GetX() && lhs->GetY() == rhs->GetY() &&
+            lhs->GetZ() == rhs->GetZ());
   }
 };
 
@@ -71,13 +94,13 @@ void HowToUnique3DPoint::Run() {
 	// 初始化数据量
 	if (!m_Points.size()){ // 不管是否要随机生成，只要 m_Points 没有数据就尝试 push_back
 		for (int i = 0; i < m_iCountofPoint; i++) {
-			m_Points.push_back(new CATMathPoint());
+			m_Points.push_back(CATMathPoint_var(new CATMathPoint()));
 		}
 	}
 
 	// 有可能m_Points 没有数据
 	if (m_Points.size()) {
-		Run();
+		Calculate();
 	}
 	else {
 		cout << "error: there is no point to calculate" << endl;
@@ -88,25 +111,36 @@ void HowToUnique3DPoint::Run() {
 
 bool HowToUnique3DPoint::Calculate()
 {
+	//int i = 1;
+	//for (auto it = m_Points.begin(); it != m_Points.end(); it++) {
+	//	cout << (*it) << "\t";
+	//	if (i % 5 == 0) cout << endl;
+	//	i++;
+	//}
+
 	// 对数据进行排序
 	cout << "#after sort:***********************************************************" << endl;
-	int i = 1;
+	 //i = 1;
+	Point3dCompare a;
+	
 	sort(m_Points.begin(), m_Points.end(), Point3dCompare());
-	for (auto it = m_Points.begin(); it != m_Points.end(); it++) {
-		cout << *it << "\t";
-		if (i % 5 == 0) cout << endl;
-		i++;
-	}
+	//for (auto it = m_Points.begin(); it != m_Points.end(); it++) {
+	//	cout << (*it) << "\t";
+	//	if (i % 5 == 0) cout << endl;
+	//	i++;
+	//}
 
 	// 对数据去重处理
 	cout << "#after unique:***********************************************************" << endl;
-	i = 1;
+	//i = 1;
+
+	// 
 	m_Points.erase(unique(m_Points.begin(), m_Points.end(), uniquePoint3d()), m_Points.end());
-	for (auto it = m_Points.begin(); it != m_Points.end(); it++) {
-		cout << *it << "\t";
-		if (i % 5 == 0) cout << endl;
-		i++;
-	}
+	//for (auto it = m_Points.begin(); it != m_Points.end(); it++) {
+	//	cout << (*it) << "\t";
+	//	if (i % 5 == 0) cout << endl;
+	//	i++;
+	//}
 
 	return true;
 }

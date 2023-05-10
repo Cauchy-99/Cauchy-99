@@ -1,5 +1,8 @@
 #pragma once
 #include <iostream>
+#include <boost/shared_ptr.hpp>
+
+
 
 class CATMathPoint {
 public:
@@ -26,7 +29,6 @@ public:
   int m_Z;
 };
 
-std::ostream &operator<<(std::ostream &out, CATMathPoint &A) {
-  out << "(" << A.GetX() << "," << A.GetY() << "," << A.GetZ() << ")";
-  return out;
-}
+
+typedef boost::shared_ptr<CATMathPoint> CATMathPoint_var;
+

@@ -1,9 +1,9 @@
 #pragma once
 #include "HowTo.h"
 #include <vector>
+#include "CATMathPoint.h"
 using std::vector;
 
-class CATMathPoint;
 class HowToUnique3DPoint : public HowTo {
 public:
   HowToUnique3DPoint();
@@ -21,12 +21,12 @@ public:
 	inline void SetRandomPoint(bool bRandom) {
     m_bRandomPoint = bRandom;
 	};
-  inline void InputPoints(vector<CATMathPoint*>& iPoints) {
+  inline void InputPoints(vector<CATMathPoint_var>& iPoints) {
 		m_Points = iPoints;
 	}
 
 private:
   int  m_iCountofPoint;    // 需要测试多少个点，默认值为10000
   bool m_bRandomPoint;    // 是否随机生成点，默认随机生成。
-  vector<CATMathPoint*> m_Points;
+  vector<CATMathPoint_var> m_Points;
 };
