@@ -2,7 +2,7 @@
 #include <iostream>
 #include <boost/shared_ptr.hpp>
 
-typedef boost::shared_ptr<CATMathPoint> CATMathPoint_var;
+
 
 class CATMathPoint {
 public:
@@ -29,4 +29,6 @@ public:
   int m_Z;
 };
 
+
+typedef boost::shared_ptr<CATMathPoint> CATMathPoint_var;
 

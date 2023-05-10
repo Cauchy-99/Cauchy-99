@@ -157,15 +157,19 @@
   <ItemGroup>
     <ClInclude Include="CATMathPoint.h" />
     <ClInclude Include="HowTo.h" />
+    <ClInclude Include="HowToReadText.h" />
     <ClInclude Include="HowToUnique3DPoint.h" />
     <ClInclude Include="MyService.h" />
+    <ClInclude Include="ZWReadTreeDataCls.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CATMathPoint.cpp" />
     <ClCompile Include="HowTo.cpp" />
+    <ClCompile Include="HowToReadText.cpp" />
     <ClCompile Include="HowToUnique3DPoint.cpp" />
     <ClCompile Include="MyService.cpp" />
     <ClCompile Include="testing.cpp" />
+    <ClCompile Include="ZWReadTreeDataCls.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

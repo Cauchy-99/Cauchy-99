@@ -1,8 +1,8 @@
 #include "CATMathPoint.h"
 #include <cstdlib>
 CATMathPoint::CATMathPoint()
-    : m_X(rand() % 50 + 1), m_Y(rand() % 50 + 1),
-      m_Z(rand() % 50 + 1) {
+    : m_X(rand() % 100 + 1), m_Y(rand() % 100 + 1),
+      m_Z(rand() % 100 + 1) {
 }
 
 
