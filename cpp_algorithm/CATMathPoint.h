@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include <boost/shared_ptr.hpp>
+//#include <boost/shared_ptr.hpp>
 
 
 
@@ -30,5 +30,5 @@ public:
 };
 
 
-typedef boost::shared_ptr<CATMathPoint> CATMathPoint_var;
+//typedef boost::shared_ptr<CATMathPoint> CATMathPoint_var;
 

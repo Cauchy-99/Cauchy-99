@@ -1,4 +1,4 @@
-#include "HowToReadText.h"
+ï»¿#include "HowToReadText.h"
 #include "SJDBuildCatalogCls.h"
 
 HowToReadText::HowToReadText()
@@ -14,10 +14,22 @@ HowToReadText::~HowToReadText()
 void PrintNode(TreeNode* node) {
 	if (!!node)
 	{
-		std::cout << node->title << std::endl;
-		for (auto child : node->children) // ±éÀúÃ¿¸ö×Ó¼¶
+		std::cout << node->node.title << " + " << node->node.content << std::endl;
+		for (auto first : node->children) // éå†æ¯ä¸ªå­çº§
 		{
-			PrintNode(child);
+			// è¾“å‡ºç¬¬ä¸€ç« 
+			std::cout << "\t" << first->node.title << " + " << first->node.content << std::endl;
+			for (auto second : first->children)
+			{
+				// è¾“å‡ºç¬¬äºŒç« 
+				std::cout << "\t\t" << second->node.title << " + " << second->node.content << std::endl;
+				for (auto third : second->children)
+				{
+					// è¾“å‡ºç¬¬ä¸‰ç« 
+					std::cout << "\t\t\t" << third->node.title << " + " << third->node.content << std::endl;
+				}
+			}
+			std::cout << std::endl;
 		}
 	}
 }
@@ -25,44 +37,48 @@ void PrintNode(TreeNode* node) {
 void HowToReadText::Run()
 {
 	std::vector<std::vector<std::string>> lst_date;
-	lst_date.push_back({ "Õû»ú", "9","¾íÈÆ", "901","·½ĞÎ¶¯Á¦¾íÈÆ»ú", "90101","·½ĞÎ¶¯Á¦¾íÈÆ»ú" });
-	lst_date.push_back({ "Õû»ú", "9","¾íÈÆ", "901","Ô²Öù¶¯Á¦¾íÈÆ»ú", "90102","Ô²Öù¶¯Á¦¾íÈÆ»ú" });
-	lst_date.push_back({ "Õû»ú", "9","µşÆ¬", "902","ÕÛµşÊ½ÈÈ¸´ºÏµşÆ¬»ú", "90201","ÕÛµşÊ½ÈÈ¸´ºÏµşÆ¬»ú" });
-	lst_date.push_back({ "Õû»ú", "9","µşÆ¬", "902","¶ÑµşÊ½ÈÈ¸´ºÏµşÆ¬»ú", "90202","¶ÑµşÊ½ÈÈ¸´ºÏµşÆ¬»ú" });
-	lst_date.push_back({ "Õû»ú", "9","¼¤¹â", "903","¼¤¹â¼«¶ú³ÉĞÍ»ú", "90301","¼¤¹â¼«¶ú³ÉĞÍ»ú" });
-	lst_date.push_back({ "Õû»ú", "9","¼¤¹â", "903","¼¤¹âÇåÏ´»ú", "90302","¼¤¹âÇåÏ´»ú" });
-	lst_date.push_back({ "3DÕû»úµ¥Ôª", "7","¾íÈÆ3DÕû»úµ¥Ôª", "701","·½ĞÎ¶¯Á¦¾íÈÆ»ú3DÕû»úµ¥Ôª", "70101","·½ĞÎ¶¯Á¦¾íÈÆ»ú3DÕû»úµ¥Ôª" });
-	lst_date.push_back({ "3DÕû»úµ¥Ôª", "7","¾íÈÆ3DÕû»úµ¥Ôª", "701","Ô²Öù¶¯Á¦¾íÈÆ»ú3DÕû»úµ¥Ôª", "70102","Ô²Öù¶¯Á¦¾íÈÆ»ú3DÕû»úµ¥Ôª" });
-	lst_date.push_back({ "3DÕû»úµ¥Ôª", "7","Ò»Ìå»ú3DÕû»úµ¥Ôª", "706","¼¤¹âÇĞ¾íÈÆÒ»Ìå»ú3DÕû»úµ¥Ôª", "70601","¼¤¹âÇĞ¾íÈÆÒ»Ìå»ú3DÕû»úµ¥Ôª" });
-	lst_date.push_back({ "3DÕû»úµ¥Ôª", "7","Ò»Ìå»ú3DÕû»úµ¥Ôª", "706","º¸½Ó¾íÈÆÒ»Ìå»ú3DÕû»úµ¥Ôª", "70602","º¸½Ó¾íÈÆÒ»Ìå»ú3DÕû»úµ¥Ôª" });
-	lst_date.push_back({ "×é¼ş", "5","ÊÕ·Å¾í×é¼ş", "501", "50100","ÊÕ·Å¾í×é¼ş" });
-	lst_date.push_back({ "×é¼ş", "5","»úĞµÊÖ×é¼ş", "502", "50200","»úĞµÊÖ×é¼ş" });
-	lst_date.push_back({ "×é¼ş", "5","¾íÈÆÍ·×é¼ş", "503", "50300","¾íÈÆÍ·×é¼ş" });
-	lst_date.push_back({ "×é¼ş", "5","ÕÅÁ¦×é¼ş", "504", "50400","ÕÅÁ¦×é¼ş" });
+	lst_date.push_back({ "æ•´æœº", "9","å·ç»•", "901","æ–¹å½¢åŠ¨åŠ›å·ç»•æœº", "90101","æ–¹å½¢åŠ¨åŠ›å·ç»•æœº" });
+	lst_date.push_back({ "æ•´æœº", "8","å·ç»•", "901","åœ†æŸ±åŠ¨åŠ›å·ç»•æœº", "90102","åœ†æŸ±åŠ¨åŠ›å·ç»•æœº" });
+	lst_date.push_back({ "æ•´æœº", "9","å ç‰‡", "902","æŠ˜å å¼çƒ­å¤åˆå ç‰‡æœº", "90201","æŠ˜å å¼çƒ­å¤åˆå ç‰‡æœº" });
+	lst_date.push_back({ "æ•´æœº", "8","å ç‰‡", "902","å †å å¼çƒ­å¤åˆå ç‰‡æœº", "90202","å †å å¼çƒ­å¤åˆå ç‰‡æœº" });
+	lst_date.push_back({ "æ•´æœº", "9","æ¿€å…‰", "903","æ¿€å…‰æè€³æˆå‹æœº", "90301","æ¿€å…‰æè€³æˆå‹æœº" });
+	lst_date.push_back({ "æ•´æœº", "9","æ¿€å…‰", "903","æ¿€å…‰æ¸…æ´—æœº", "90302","æ¿€å…‰æ¸…æ´—æœº" });
+	lst_date.push_back({ "3Dæ•´æœºå•å…ƒ", "7","å·ç»•3Dæ•´æœºå•å…ƒ", "701","æ–¹å½¢åŠ¨åŠ›å·ç»•æœº3Dæ•´æœºå•å…ƒ", "70101","æ–¹å½¢åŠ¨åŠ›å·ç»•æœº3Dæ•´æœºå•å…ƒ" });
+	lst_date.push_back({ "3Dæ•´æœºå•å…ƒ", "7","å·ç»•3Dæ•´æœºå•å…ƒ", "701","åœ†æŸ±åŠ¨åŠ›å·ç»•æœº3Dæ•´æœºå•å…ƒ", "70102","åœ†æŸ±åŠ¨åŠ›å·ç»•æœº3Dæ•´æœºå•å…ƒ" });
+	lst_date.push_back({ "3Dæ•´æœºå•å…ƒ", "7","ä¸€ä½“æœº3Dæ•´æœºå•å…ƒ", "706","æ¿€å…‰åˆ‡å·ç»•ä¸€ä½“æœº3Dæ•´æœºå•å…ƒ", "70601","æ¿€å…‰åˆ‡å·ç»•ä¸€ä½“æœº3Dæ•´æœºå•å…ƒ" });
+	lst_date.push_back({ "3Dæ•´æœºå•å…ƒ", "7","ä¸€ä½“æœº3Dæ•´æœºå•å…ƒ", "706","ç„Šæ¥å·ç»•ä¸€ä½“æœº3Dæ•´æœºå•å…ƒ", "70602","ç„Šæ¥å·ç»•ä¸€ä½“æœº3Dæ•´æœºå•å…ƒ" });
+	lst_date.push_back({ "ç»„ä»¶", "5","æ”¶æ”¾å·ç»„ä»¶", "501", "50100","æ”¶æ”¾å·ç»„ä»¶" });
+	lst_date.push_back({ "ç»„ä»¶", "5","æœºæ¢°æ‰‹ç»„ä»¶", "502", "50200","æœºæ¢°æ‰‹ç»„ä»¶" });
+	lst_date.push_back({ "ç»„ä»¶", "4","å·ç»•å¤´ç»„ä»¶", "503", "50300","å·ç»•å¤´ç»„ä»¶" });
+	lst_date.push_back({ "ç»„ä»¶", "4","å¼ åŠ›ç»„ä»¶", "504", "50400","å¼ åŠ›ç»„ä»¶" });
 
 	SJDBuildCatalogCls* pClass = new SJDBuildCatalogCls();
 	if (!!pClass)
 	{
-		std::vector<std::string> path;
-		path.reserve(5); // ³õÊ¼»¯ capacity £¬¼õÉÙ²»±ØÒªµÄ¿ª±Ù¿Õ¼ä
+		Node node;
+		std::vector<Node> path;
+		path.reserve(5); // åˆå§‹åŒ– capacity ï¼Œå‡å°‘ä¸å¿…è¦çš„å¼€è¾Ÿç©ºé—´
 		for (auto data : lst_date)
 		{
-			// ²åÈëµÚÒ»ÕÂ½Ú
-			path.clear(); // clear Ö»»áÇå³ıÊı¾İ£¬²»»á¸Ä±ä capacity
-			pClass->insertChapter(path, data[0], data[1]); // path ±£Ö¤ÁË½á¹¹Ê÷Â·¾¶µÄÕıÈ·ĞÔ£¬data[1]ÊÇµÚÒ»ÕÂ½Ú data[1]ÊÇµÚÒ»ÕÂ½ÚµÄÄÚÈİ¡£ÄÚ²¿ÉèÖÃÁË²»ÖØ¸´Ìí¼ÓÕÂ½Ú
+			// æ’å…¥ç¬¬ä¸€ç« èŠ‚
+			path.clear(); // clear åªä¼šæ¸…é™¤æ•°æ®ï¼Œä¸ä¼šæ”¹å˜ capacity
+			node.Set(data[0], data[1]);
+			pClass->insertChapter(path, node); // path ä¿è¯äº†ç»“æ„æ ‘è·¯å¾„çš„æ­£ç¡®æ€§ï¼Œdata[1]æ˜¯ç¬¬ä¸€ç« èŠ‚ data[1]æ˜¯ç¬¬ä¸€ç« èŠ‚çš„å†…å®¹ã€‚å†…éƒ¨è®¾ç½®äº†ä¸é‡å¤æ·»åŠ ç« èŠ‚
 
-			// ²åÈëµÚ¶şÕÂ½Ú
-			path.push_back(data[0]); //È·¶¨¸¸½Úµã
-			pClass->insertChapter(path, data[2], data[3]);
+			// æ’å…¥ç¬¬äºŒç« èŠ‚
+			path.push_back(node); //ç¡®å®šçˆ¶èŠ‚ç‚¹
+			node.Set(data[2], data[3]);
+			pClass->insertChapter(path, node);
 
-			// ²åÈëµÚÈıÕÂ½Ú
-			path.push_back(data[2]);
-			pClass->insertChapter(path, data[4], data[5]);
+			// æ’å…¥ç¬¬ä¸‰ç« èŠ‚
+			path.push_back(node);
+			node.Set(data[4], data[5]);
+			pClass->insertChapter(path, node);
 		}
 	}
 	
-	// ÏÔÊ¾
-	std::cout << "================= Ä¿Â¼ =====================" << std::endl;
+	// æ˜¾ç¤º
+	std::cout << "================= ç›®å½• =====================" << std::endl;
 	if (!!pClass->root)
 	{
 		PrintNode(pClass->root);

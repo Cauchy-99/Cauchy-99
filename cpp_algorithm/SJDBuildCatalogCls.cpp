@@ -1,27 +1,26 @@
 #include "SJDBuildCatalogCls.h"
 
-bool SJDBuildCatalogCls::insertChapter(const std::vector<std::string>& path, const std::string& title, const std::string& content) {
+bool SJDBuildCatalogCls::insertChapter(const std::vector<Node>& path, const Node& iToInsert) {
 	TreeNode* node = root;
-	for (auto name : path) {
-		TreeNode* child = node->getChild(name);
+	for (auto item : path) {
+		TreeNode* child = node->getChild(item);
 		if (!child) {
-			child = new TreeNode(name);
-			node->addChild(child);
+			return false;
 		}
 		node = child;
 	}
-	if (node->getChild(title)) {
+	if (node->getChild(iToInsert)) {
 		return false; // Node already exists
 	}
 
-	node->addChild(new TreeNode(title,content));
+	node->addChild(new TreeNode(iToInsert.title, iToInsert.content));
 	return true;
 }
 
-TreeNode* SJDBuildCatalogCls::getChapter(const std::vector<std::string>& path) const {
+TreeNode* SJDBuildCatalogCls::getChapter(const std::vector<Node>& path) const {
 	TreeNode* node = root;
-	for (auto name : path) {
-		node = node->getChild(name);
+	for (auto item : path) {
+		node = node->getChild(item);
 		if (!node) {
 			return nullptr;
 		}

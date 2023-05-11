@@ -5,16 +5,29 @@
 #include <vector>
 
 // TODO: 
-// 1.添加获取父级节点
-// 2.目前访问某一个节点，需要全路径，待优化
+// 1.娣诲姞鑾峰彇鐖剁骇鑺傜偣
+// 2.鐩墠璁块棶鏌愪竴涓妭鐐癸紝闇�瑕佸叏璺緞锛屽緟浼樺寲
 // 3.
-class TreeNode {
-public:
+
+struct Node
+{
 	std::string title;
 	std::string content;
+	Node(const std::string& ititle, const std::string& icontent) : title(ititle), content(icontent) {}
+	Node() : title(""), content("") {}
+	inline void Set(const std::string& ititle, const std::string& icontent) {
+		title = ititle;
+		content = icontent;
+	}
+};
+
+class TreeNode {
+public:
+
+	Node node;
 	std::vector<TreeNode*> children;
 
-	TreeNode(const std::string& ititle, const std::string& icontent = "") : title(ititle), content(icontent) {}
+	TreeNode(const std::string& ititle, const std::string& icontent = "") : node(ititle,icontent){}
 
 	~TreeNode() {
 		for (auto child : children) {
@@ -26,23 +39,16 @@ public:
 		children.push_back(child);
 	}
 
-	TreeNode* getChild(const std::string& title) const {
+	TreeNode* getChild(const Node& inode) const {
 		for (auto child : children) {
-			if (child->title == title) {
+			if (child->node.title == inode.title && child->node.content == inode.content) {
 				return child;
 			}
 		}
 		return nullptr;
 	}
-
-	void setContent(const std::string& content) {
-		this->content = content;
-	}
-
-	std::string getContent() const {
-		return content;
-	}
 };
+
 class SJDBuildCatalogCls {
 public:
 	TreeNode* root;
@@ -53,7 +59,8 @@ public:
 		delete root;
 	}
 
-	bool insertChapter(const std::vector<std::string>& path, const std::string& title, const std::string& content = "");
+	bool insertChapter(const std::vector<Node>& path, const Node& node);
 
-	TreeNode* getChapter(const std::vector<std::string>& path) const;
+	TreeNode* getChapter(const std::vector<Node>& path) const;
+
 };

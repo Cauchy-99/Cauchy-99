@@ -160,6 +160,7 @@
     <ClInclude Include="HowToReadText.h" />
     <ClInclude Include="HowToUnique3DPoint.h" />
     <ClInclude Include="MyService.h" />
+    <ClInclude Include="SJDBuildCatalogCls.h" />
     <ClInclude Include="ZWReadTreeDataCls.h" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +169,7 @@
     <ClCompile Include="HowToReadText.cpp" />
     <ClCompile Include="HowToUnique3DPoint.cpp" />
     <ClCompile Include="MyService.cpp" />
+    <ClCompile Include="SJDBuildCatalogCls.cpp" />
     <ClCompile Include="testing.cpp" />
     <ClCompile Include="ZWReadTreeDataCls.cpp" />
   </ItemGroup>
