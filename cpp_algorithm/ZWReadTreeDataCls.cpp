@@ -1,4 +1,5 @@
 ﻿#include "ZWReadTreeDataCls.h"
+
 #include <iostream>
 
 ZWReadTreeDataCls::ZWReadTreeDataCls()
@@ -20,9 +21,6 @@ bool ZWReadTreeDataCls::ReadData()
 {
 	// 拆分数据，每一行按都好拆分数据
 	std::vector<std::vector<std::string>> lst_date;
-	//...do something
-	//...{ "组件", "5","张力组件", "504", "50400","张力组件" }
-
 	lst_date.push_back({ "整机", "9","卷绕", "901","方形动力卷绕机", "90101","方形动力卷绕机" });
 	lst_date.push_back({ "整机", "9","卷绕", "901","圆柱动力卷绕机", "90102","圆柱动力卷绕机" });
 	lst_date.push_back({ "整机", "9","叠片", "902","折叠式热复合叠片机", "90201","折叠式热复合叠片机" });
