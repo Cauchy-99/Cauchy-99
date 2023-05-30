@@ -46,6 +46,6 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG 	${publish_lib_debug})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RLEASE 	${publish_lib_release})
 
 # Add subdirectories for each module
-add_subdirectory(HowTo)
-add_subdirectory(Interface)
-add_subdirectory(Main)
+add_subdirectory(mytesting/HowTo)
+add_subdirectory(mytesting/Interface)
+add_subdirectory(mytesting/Main)
