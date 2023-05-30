@@ -21,11 +21,6 @@ endforeach()
 
 # Add Source
 set(SOURCE
-# .h
-include/HowTo.h
-include/HowToReadText.h
-#include/HowToUnique3DPoint.h
-
 # .cpp
 src/HowTo.cpp
 src/HowToReadText.cpp
@@ -37,12 +32,8 @@ link_directories(
     ${publish_lib_debug}
 )
 
-
 # Add library
 add_library(HowTo SHARED ${SOURCE})
-
-# Set library output name
-set_target_properties(HowTo PROPERTIES LIBRARY_OUTPUT_DIRECTORY $ENV{HowTo_ROOT}/lib)
 
 target_link_libraries(HowTo PRIVATE Interface)
 

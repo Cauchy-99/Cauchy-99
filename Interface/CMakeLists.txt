@@ -18,35 +18,20 @@ endforeach()
 # 设置头文件路径
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
-    $ENV{HowTo_ROOT}/include/howto
     ${Boost_INCLUDE_DIRS}
 )
 
 # Add Source
 set(SOURCE
-# .h
-#include/CATMathPoint.h
-include/SJDBuildCatalogCls.h
-include/ZWReadTreeDataCls.h
-
-
 # .cpp
 #src/CATMathPoint.cpp
 src/SJDBuildCatalogCls.cpp
 src/ZWReadTreeDataCls.cpp
 )
 
-# 设置链接库路径
-link_directories(
-    ${publish_lib_debug}
-)
-
 
 # Add library
 add_library(Interface SHARED ${SOURCE})
-
-# Set library output name
-set_target_properties(Interface PROPERTIES LIBRARY_OUTPUT_DIRECTORY $ENV{HowTo_ROOT}/lib)
 
 # Install library
 install(TARGETS Interface DESTINATION lib)
