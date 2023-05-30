@@ -1,9 +1,5 @@
 #pragma once
 #include <iostream>
-//#include <boost/shared_ptr.hpp>
-
-
-
 class CATMathPoint {
 public:
   CATMathPoint();
@@ -29,6 +25,4 @@ public:
   int m_Z;
 };
 
-
-//typedef boost::shared_ptr<CATMathPoint> CATMathPoint_var;
 

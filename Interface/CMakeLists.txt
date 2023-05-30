@@ -24,9 +24,8 @@ include_directories(
 # Add Source
 set(SOURCE
 # .cpp
-#src/CATMathPoint.cpp
+src/CATMathPoint.cpp
 src/SJDBuildCatalogCls.cpp
-src/ZWReadTreeDataCls.cpp
 )
 
 

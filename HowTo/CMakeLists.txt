@@ -24,7 +24,7 @@ set(SOURCE
 # .cpp
 src/HowTo.cpp
 src/HowToReadText.cpp
-#src/HowToUnique3DPoint.cpp
+src/HowToUnique3DPoint.cpp
 )
 
 # 设置链接库路径

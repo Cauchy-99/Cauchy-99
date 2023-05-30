@@ -8,6 +8,7 @@
 #include <iomanip>
 
 #include "HowToReadText.h"
+#include "HowToUnique3DPoint.h"
 
 using namespace std;
 
@@ -15,8 +16,9 @@ int main ()
 {
   auto start = std::chrono::system_clock::now();
  
-  HowToReadText test = HowToReadText();
+  HowToUnique3DPoint test = HowToUnique3DPoint();
   test.Run();
+  
 
   auto end = std::chrono::system_clock::now();
 
