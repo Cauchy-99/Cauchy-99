@@ -1,0 +1,156 @@
+commit 019a98f866378e238b817e512696cda733bc3be9
+Author: zhouw <zhouwei_99@163.com>
+Date:   Tue Aug 1 10:32:49 2023 +0800
+
+    index on master: 2707207 更新测试
+
+diff --git a/Main/main.cpp b/Main/main.cpp
+index b943234..6dc8b91 100644
+--- a/Main/main.cpp
++++ b/Main/main.cpp
+@@ -60,6 +60,8 @@ int main()
+   // 使用成员函数设置宽度
+   box.setWidth(10.0);
+ 
++  /// test drop
++
+   // 使用友元函数输出宽度
+   printWidth(box);
+ 
+
+tree 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+
+
+commit 503c18a411db67bf1d6b88bcd867fb21f87ce48a
+Merge: 2707207 019a98f 7b54d10
+Author: zhouw <zhouwei_99@163.com>
+Date:   Tue Aug 1 10:32:49 2023 +0800
+
+    On master: drop1
+
+#include "MyService.h"
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <ctime>
+#include <cstdlib>
+#include <chrono>
+#include <iomanip>
+
+#include "HowToReadText.h"
+
+using namespace std;
+
+#include <iostream>
+
+using namespace std;
+
+class Box
+{
+  static double width;
+
+public:
+  friend void printWidth(Box box);
+  friend class BigBox;
+  static void setWidth(double wid);
+};
+
+class BigBox
+{
+public:
+  void Print(int width, Box &box)
+  {
+    // BigBox是Box的友元类，它可以直接访问Box类的任何成员
+    Box::setWidth(width);
+    printWidth(box);
+    cout << "Width of box : " << box.width << endl;
+  }
+};
+
+// 成员函数定义
+void Box::setWidth(double wid)
+{
+  width = wid;
+}
+
+// 请注意：printWidth() 不是任何类的成员函数
+void printWidth(Box box)
+{
+  /* 因为 printWidth() 是 Box 的友元，它可以直接访问该类的任何成员 */
+  cout << "Width of box : " << box.width << endl;
+}
+
+int main()
+{
+  auto start = std::chrono::system_clock::now();
+
+  Box box;
+  BigBox big;
+
+  // 使用成员函数设置宽度
+  box.setWidth(10.0);
+
+  /// test drop
+
+  // 使用友元函数输出宽度
+  printWidth(box);
+
+  // 使用友元类中的方法设置宽度
+  big.Print(20, box);
+
+  // // new object
+  // cout << "--------------new object-------------" << endl;
+  // HowToReadText *test = new HowToReadText();
+  // delete test;
+  // cout << "-------------------------------------\n" << endl;
+
+  // // new object array
+  // cout << "--------------new object array-------------" << endl;
+  // HowToReadText *test1 = new HowToReadText[5];
+  // delete[] test1;
+  // cout << "-------------------------------------\n" << endl;
+
+  // // new pointer array
+  // cout << "--------------new pointer array-------------" << endl;
+  // HowToReadText **test2 = new HowToReadText *[10];
+  // HowToReadText obj = HowToReadText();
+  // test2[0] = &obj;
+  // delete[] test2;
+  // cout << "-------------------------------------\n" << endl;
+
+  //
+  // test->Run();
+
+  // HowToReadText* a = test;
+  // auto end = std::chrono::system_clock::now();
+  // auto duration =
+  // std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+  // std::cout << " total time:" << duration.count() << " ms\n";
+
+  // std::cin.get();
+
+  system("pause");
+  return 0;
+};
+commit 7b54d10775d9c496301ffe0d2375ebf0272910b0
+Author: zhouw <zhouwei_99@163.com>
+Date:   Tue Aug 1 10:32:49 2023 +0800
+
+    untracked files on master: 2707207 更新测试
+
+tree eb3ae278af86c036c6762caf365f8fa6e6f40f70
+
+.vscode/
+CMakeLists.txt
+HowTo/
+Interface/
+Main/
+export.bat
+publish/
+
+tree 99b1a1a7093ef323255bc54d7e4e9a2e20e94afe
+
+CMakeLists.txt
+MyService.cpp
+MyService.h
+main.cpp
